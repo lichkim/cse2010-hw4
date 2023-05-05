@@ -59,8 +59,24 @@ public class Maze {
 
 		/*
 		 * Fill your code here
+		 * 사실상 DFS 코드
 		 */
+		if (maze[row][col] == 1) {return false;}
+		visited[row][col] = true;
+		stack.push(new Location(row, col));
+		//reached exit
+		if (row == exit.row && col == exit.col) {return true;}
+		//moveEast
+		if (col < numCols - 1 && maze[row][col + 1] == 0 && !visited[row][col + 1] && moveTo(row, col + 1)) {return true;}
+		//moveWest
+		if (col > 0 && maze[row][col - 1] == 0 && !visited[row][col - 1] && moveTo(row, col - 1)) {return true;}
+		//moveSouth
+		if (row < numRows - 1 && maze[row + 1][col] == 0 && !visited[row + 1][col] && moveTo(row + 1, col)) {return true;}
+		//moveNorth
+		if (row > 0 && maze[row - 1][col] == 0 && !visited[row - 1][col] && moveTo(row - 1, col)) {return true;}
 
+		//failed to reach exit
+		stack.pop();
 		return false;
 	}
 	

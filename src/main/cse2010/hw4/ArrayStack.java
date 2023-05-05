@@ -29,6 +29,7 @@ public class ArrayStack<T> implements Stack<T> {
 			throw new FullStackException("Stack Overflow");
 
 		// Your code here
+		elements[++top] = obj;
 	}
 
 	@Override
@@ -38,8 +39,8 @@ public class ArrayStack<T> implements Stack<T> {
 		}
 
 		// Your code here
+		return elements[top--];
 
-		return null;
 	}
 
 	@Override
@@ -49,13 +50,13 @@ public class ArrayStack<T> implements Stack<T> {
 		}
 
 		// Your code here
-		return null;
+		return elements[top];
 	}
 
 	@Override
 	public boolean isEmpty() {
 		// Your code here
-		return false;
+		return (top == -1);
 	}
 
 	@Override
